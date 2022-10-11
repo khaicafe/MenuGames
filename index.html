@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--on/off dns-prefetch-->
+        <meta http-equiv="x-dns-prefetch-control" content="on">
+        <!-- Seconds refresh page  -->
+        <meta http-equiv="refresh" content="600">
+        <!--=============== BOXICONS ===============-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+        <!-- <link rel="stylesheet" href="./vendor/css/bootstrap.min.css"> -->
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/animate.min.css"/>
+        <link rel="stylesheet" href="venobox/dist/venobox.min.css" />
+        <title>Responsive bottom navigation</title>
+    </head>
+    <body data-spy="scroll" data-offset="100">
+        <div id="progressbar"></div>
+        <div id="scrollbar"></div>
+        <!--=============== HEADER ===============-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <!-- <a href="#" class="nav__logo">Đăng ký/Đăng Nhập</a> -->
+                <div class="button">
+                    <a class="down" href="#">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <p style="font-size: 1rem;">Login</p>
+                    </a>
+                </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link">
+                                <i class='bx bx-home-alt nav__icon'></i>
+                                <span class="nav__name">Home</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nav__item">
+                            <a href="#about" class="nav__link">
+                                <i class='bx bx-user nav__icon'></i>
+                                <span class="nav__name">Tính Năng</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#skills" class="nav__link">
+                                <i class='bx bx-book-alt nav__icon'></i>
+                                <span class="nav__name">Bảng Giá</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#portfolio" class="nav__link">
+                                <i class='bx bx-briefcase-alt nav__icon'></i>
+                                <span class="nav__name">Đối Tác</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#contactme" class="nav__link">
+                                <i class='bx bx-message-square-detail nav__icon'></i>
+                                <span class="nav__name">Liên Hệ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <img src="assets/img/perfil.png" alt="" class="nav__img">
+            </nav>
+        </header>
+
+        <main>
+            <!--=============== HOME ===============-->
+            <section class="container section section__height" id="home">
+                <div class="contai__section">
+                    <img class='hinh-kl1 wow animate__animated animate__backInDown animate__slow' src="assets/img/logo.png">
+                    <h2 class="section__title wow animate__animated animate__fadeInUp animate__slow" data-wow-duration="1s" data-wow-delay="0.6s" >Welcome To KLTeam</h2>
+                    <div class="button">
+                        <a class="down wow animate__animated animate__flipInX animate__slow" data-wow-duration="2s" data-wow-delay="1s" href="#">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Download Free
+                        </a>
+                    </div>
+                    <p class="lead wow animate__animated animate__zoomIn animate__slow">CHUYÊN
+                        CUNG CẤP GIẢI PHÁP PHẦN MỀM QUẢN LÝ  VẬN HÀNH
+                        CHUYÊN NGHIỆP CHO
+                        PHÒNG GAME</p>
+                        
+                </div>
+            </section>
+
+            <!--=============== ABOUT ===============-->
+            <section class="container section section__height" id="about">
+                <div class="contai__section">
+                    <h2 class="section__title Banner wow animate__animated animate__fadeInDown animate__slow" data-wow-duration="2s" data-wow-delay="1s">Chuyên nghiệp hóa quy trình vận hành phòng máy</h2>
+                    <ul class="Banner wow animate__animated animate__fadeInLeft animate__slow" data-wow-duration="2s" data-wow-delay="2s">
+                        <li style="--accent-color:#ff225c;" >
+                            <div class="icon"><img src="./assets/icon/vanhanh.ico"></div>
+                            <div class="title">Vận Hành</div>
+                            <div class="descr">Dễ dàng cập nhật games, khuyến mại, cùng với các công cụ quản lý được tích hợp, giảm thiểu thời gian cài đặt.</div>
+                        </li>
+                        <li style="--accent-color:#1286A8;">
+                            <div class="icon"><img src="./assets/icon/qlpc.ico"></div>
+                            <div class="title">QUẢN LÝ PHẦN CỨNG</div>
+                            <div class="descr">Liệt Kê phần cứng tại phòng máy, cảnh báo sớm rủi ro mấy mát, hư hỏng linh kiện ...</div>
+                        </li>
+                        <li style="--accent-color:#b22dff;">
+                            <div class="icon"><img src="./assets/icon/bctk.ico"></div>
+                            <div class="title">BÁO CÁO THỐNG KÊ</div>
+                            <div class="descr">Theo dõi tình hình kinh doanh một cách dễ dàng và nhanh chóng.</div>
+                        </li>
+                        <li style="--accent-color:#350da3;">
+                            <div class="icon"><img src="./assets/icon/listgame.ico"></div>
+                            <div class="title">DANH DÁCH GAMES ĐA DẠNG</div>
+                            <div class="descr">Quản lý danh sách các tựa games mới, hot nhất hiện nay,</div>
+                        </li>
+                    </ul>
+
+                    <header class="Banner wow animate__animated animate__fadeInUp animate__slow" data-wow-duration="2s" data-wow-delay="2s">
+                        <h2 style="color: white;">Giải Pháp</h2>
+                        <div style="color: rgba(255, 255, 255, 0.61);">
+                            <p>Với nhiều tính năng mà các phần mềm hiện tại trên thị trường không có, KLTeam tự tin giúp chủ phòng máy quản lý, theo dõi tình hình kinh doanh phòng máy một cách chuyên nghiệp, dễ dàng và hiệu quả.</p>
+                        </div>
+                    </header>
+                </div>
+                
+            </section>
+
+            <!--=============== SKILLS ===============-->
+            <section class="container section section__height" id="skills">
+                <div class="contai__section">
+                    <h2 class="section__title wow animate__animated animate__fadeInDown animate__slow" data-wow-duration="2s" data-wow-delay="1s">Tính năng & Bảng giá</h2>
+                    <div style="color: rgba(255, 255, 255, 0.9); background: rgba(0, 0, 0, 0.61);" class="wow animate__animated animate__fadeInLeft animate__slow" data-wow-duration="2s" data-wow-delay="2s">
+                        <p>Miễn phí <strong>2 tuần</strong> sử dụng thử phiên bản thu phí KLMenu<strong></strong>.</p>
+                        <p>Khuyến mãi thêm 1 tháng sử dụng khi thanh toán trước 12 tháng.</p>
+                        <!-- <p>Phần mềm update game <strong>GCUpdater</strong> đang trong giai đoạn thử nghiệm với số phòng máy giới hạn. Chính sách giá sẽ được cập nhật trong thời gian sắp tới.</p> -->
+                        <p>Có chính sách ưu đãi cho đại lý, kỹ thuật viên hoặc người giới thiệu, vui lòng liên hệ KLTeam để biết thêm chi tiết.</p>
+                        <br>
+                    </div>
+                    <br>
+                        <div class="cardtemp wow animate__animated animate__fadeInUp animate__slow" data-wow-duration="2s" data-wow-delay="2s">
+                            <div class="col-md-4 mt-2">
+                              <article class="card__content text-center">
+                                  <div class="card__pricing">
+                                  </div>
+                 
+                                  <header class="card__header">
+                                      <span class="card__header-subtitle">KLMenu</span>
+                                      <h1 class="card__header-title">Miễn Phí</h1>
+                                  </header>
+                 
+                                  <ul class="card__list grid">
+                                      <li class="card__list-item">
+                                          <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                          <p class="card__list-description">* Menu Game</p>
+                                      </li>
+                                      <li class="card__list-item">
+                                        <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                        <p class="card__list-description">* Auto update games</p>
+                                    </li>
+                                      <li class="card__list-item">
+                                         <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                         <p class="card__list-description">* Quản lý Phần cứng</p>
+                                     </li>
+                                     <li class="card__list-item">
+                                         <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                         <p class="card__list-description">* Thống kê Báo cáo</p>
+                                     </li>
+                                     <li class="card__list-item">
+                                        <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                        <p class="card__list-description">* App Android</p>
+                                    </li>
+                                     <br>
+                                     <li class="card__list-item">
+                                         <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                         <p class="card__list-description">* 24*7 Uptime</p>
+                                     </li>
+                                  </ul>
+                                  <button class="card__button">ADD TO CART</button>
+                              </article>
+                            </div>
+                 
+                            <div class="col-md-4 mt-2">
+                             <article class="card__content text-center">
+                                 <div class="card__pricing card__pricing1">
+                                 </div>
+                 
+                                 <header class="card__header">
+                                     <span class="card__header-subtitle">KLMenu-Vip</span>
+                                     <h1 class="card__header-title">5.000₫/PC</h1>
+                                 </header>
+                 
+                                 <ul class="card__list grid">
+                                    <li class="card__list-item">
+                                        <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                        <p class="card__list-description">* Menu Game</p>
+                                    </li>
+                                    <li class="card__list-item">
+                                      <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                      <p class="card__list-description">* Auto update games</p>
+                                  </li>
+                                    <li class="card__list-item">
+                                       <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                       <p class="card__list-description">* Quản lý Phần cứng</p>
+                                   </li>
+                                   <li class="card__list-item">
+                                       <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                       <p class="card__list-description">* Thống kê Báo cáo</p>
+                                   </li>
+                                   <li class="card__list-item">
+                                    <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                    <p class="card__list-description">* App Android</p>
+                                </li>
+                                   <br>
+                                   <li class="card__list-item">
+                                       <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                       <p class="card__list-description">* 24*7 Uptime</p>
+                                   </li>
+                                 </ul>
+                                 <button class="card__button">ADD TO CART</button>
+                             </article>
+                           </div>
+                 
+                           <div class="col-md-4 mt-2">
+                             <article class="card__content text-center">
+                                 <div class="card__pricing card__pricing2">
+                                 </div>
+                 
+                                 <header class="card__header">
+                                     <span class="card__header-subtitle">KTV</span>
+                                     <h1 class="card__header-title">Business</h1>
+                                 </header>
+                 
+                                 <ul class="card__list grid">
+                                    <li class="card__list-item">
+                                        <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                        <p class="card__list-description">* Menu Game</p>
+                                    </li>
+                                    <li class="card__list-item">
+                                      <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                      <p class="card__list-description">* Auto update games</p>
+                                  </li>
+                                    <li class="card__list-item">
+                                       <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                       <p class="card__list-description">* Quản lý Phần cứng</p>
+                                   </li>
+                                   <li class="card__list-item">
+                                       <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                       <p class="card__list-description">* Thống kê Báo cáo</p>
+                                   </li>
+                                   <li class="card__list-item">
+                                        <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                        <p class="card__list-description">* App Android</p>
+                                    </li>
+                                   <br>
+                                   <li class="card__list-item">
+                                       <i class="fa-regular fa-circle-check card__list-icon"></i>
+                                       <p class="card__list-description">* 24*7 Uptime</p>
+                                   </li>
+                                 </ul>
+                                 <button class="card__button">ADD TO CART</button>
+                             </article>
+                           </div>
+
+                         </div>
+                    
+                    
+                </div>
+                
+            </section>
+
+            <!--=============== PORTFOLIO ===============-->
+            <section class="container section section__height" id="portfolio">
+                <div class="contai__section">
+                    <!-- <h2 class="section__title">Portfolio</h2> -->
+                    <h2 class="section__title wow animate__animated animate__fadeInDown animate__slow" data-wow-duration="2s" data-wow-delay="1s">Đối Tác</h2>
+                    <div>
+                        <p class="lead wow animate__animated animate__zoomIn animate__slow" data-wow-duration="2s" data-wow-delay="2s">KLTeam được tin tưởng bởi các đối tác lớn.</p>
+                    </div>
+                    <div class="OtherPartner-module--partnerList--2b-k3 wow animate__animated animate__fadeInLeft animate__slow" data-wow-duration="2s" data-wow-delay="2s">
+                        <ul>
+                            <li>
+                                <div data-gatsby-image-wrapper="" class="gatsby-image-wrapper" style="width: 80px; opacity: 0.8; margin-bottom: 0rem;">
+                                    <div aria-hidden="true" data-placeholder-image="" style="opacity: 0; transition: opacity 500ms linear 0s; background-color: rgb(168, 24, 104); width: 80px; position: relative;">
+                                    </div>
+                                    <picture>
+                                        <source type="image/webp" srcset="https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/4a24c/momo.webp 80w,
+                                        https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/a2c11/momo.webp 160w" sizes="80px">
+                                        <img width="80" data-main-image="" sizes="80px" decoding="async" src="https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/185e6/momo.png" srcset="https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/185e6/momo.png 80w,
+                                        https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/8c406/momo.png 160w" alt="" style="object-fit: cover; opacity: 1;">
+                                    </picture>
+                                    
+                                </div>
+                            </li>
+                            <li>
+                                <div data-gatsby-image-wrapper="" class="gatsby-image-wrapper" style="width: 111px; opacity: 0.8; margin-bottom: 1.5rem;">
+                                    <div aria-hidden="true" data-placeholder-image="" style="opacity: 0; transition: opacity 500ms linear 0s; background-color: rgb(8, 8, 8); width: 111px; position: relative;">
+                                    </div>
+                                    <picture>
+                                        <source type="image/webp" srcset="https://gcp.vn/static/723f85bd4cfa1a0ef40f0488236111e2/c458d/pubg.webp 111w" sizes="111px">
+                                        <img width="111" height="80" data-main-image="" sizes="111px" decoding="async" src="https://gcp.vn/static/723f85bd4cfa1a0ef40f0488236111e2/df3ef/pubg.png" srcset="https://gcp.vn/static/723f85bd4cfa1a0ef40f0488236111e2/df3ef/pubg.png 111w" alt="" style="object-fit: cover; opacity: 1;">
+                                    </picture>
+                                    <noscript></noscript>
+                                </div>
+                            </li>
+                            <li>
+                                <div data-gatsby-image-wrapper="" class="gatsby-image-wrapper" style="width: 80px; opacity: 0.8; margin-bottom: 1.5rem;"><div aria-hidden="true" data-placeholder-image="" style="opacity: 0; transition: opacity 500ms linear 0s; background-color: rgb(248, 248, 248); width: 80px; position: relative;">
+                                </div>
+                                <picture>
+                                    <source type="image/webp" srcset="https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/4a24c/viettelpay.webp 80w,
+                                        https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/a2c11/viettelpay.webp 160w" sizes="80px">
+                                        <img width="80" height="80" data-main-image="" sizes="80px" decoding="async" src="https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/185e6/viettelpay.png" srcset="https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/185e6/viettelpay.png 80w,
+                                        https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/8c406/viettelpay.png 160w" alt="" style="object-fit: cover; opacity: 1;">
+                                </picture>
+                                    <noscript></noscript>
+                                </div>
+                            </li>
+                            <li>
+                                <div data-gatsby-image-wrapper="" class="gatsby-image-wrapper" style="width: 80px; opacity: 0.8; margin-bottom: 1.5rem;">
+                                    <div aria-hidden="true" data-placeholder-image="" style="opacity: 0; transition: opacity 500ms linear 0s; background-color: rgb(248, 248, 248); width: 80px; position: relative;">
+                                    </div>
+                                    <picture>
+                                        <source type="image/webp" srcset="https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/4a24c/vng.webp 80w,
+                                        https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/a2c11/vng.webp 160w" sizes="80px"><img width="80" height="80" data-main-image="" sizes="80px" decoding="async" src="https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/185e6/vng.png" srcset="https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/185e6/vng.png 80w,
+                                        https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/8c406/vng.png 160w" alt="" style="object-fit: cover; opacity: 1;">
+                                    </picture><noscript></noscript>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!-- icon chay ngang -->
+                    <br>
+                    <p style="color: white;" class="wow animate__animated animate__fadeInLeft animate__slow" data-wow-duration="2s" data-wow-delay="2s">Là phần mềm quản lý <strong>được yêu thích nhất</strong> của các phòng máy</p>
+                    <div class="marquee">
+                        <ul class="marquee-content">
+                            <li><picture>
+                                <source type="image/webp" srcset="https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/4a24c/vng.webp 80w,
+                                https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/a2c11/vng.webp 160w" sizes="80px"><img width="80" height="80" data-main-image="" sizes="80px" decoding="async" src="https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/185e6/vng.png" srcset="https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/185e6/vng.png 80w,
+                                https://gcp.vn/static/187234bf4cc96c6e8616b43efb45a2d0/8c406/vng.png 160w" alt="" style="object-fit: cover; opacity: 1;">
+                            </picture></li>
+                            <li><picture>
+                                <source type="image/webp" srcset="https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/4a24c/viettelpay.webp 80w,
+                                    https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/a2c11/viettelpay.webp 160w" sizes="80px">
+                                    <img width="80" height="80" data-main-image="" sizes="80px" decoding="async" src="https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/185e6/viettelpay.png" srcset="https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/185e6/viettelpay.png 80w,
+                                    https://gcp.vn/static/94b3b336e61bc88602fbd8381f8f45c1/8c406/viettelpay.png 160w" alt="" style="object-fit: cover; opacity: 1;">
+                            </picture></li>
+                            <li> <picture>
+                                <source type="image/webp" srcset="https://gcp.vn/static/723f85bd4cfa1a0ef40f0488236111e2/c458d/pubg.webp 111w" sizes="111px">
+                                <img width="111" height="80" data-main-image="" sizes="111px" decoding="async" src="https://gcp.vn/static/723f85bd4cfa1a0ef40f0488236111e2/df3ef/pubg.png" srcset="https://gcp.vn/static/723f85bd4cfa1a0ef40f0488236111e2/df3ef/pubg.png 111w" alt="" style="object-fit: cover; opacity: 1;">
+                            </picture></li>
+                            <li><picture>
+                                <source type="image/webp" srcset="https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/4a24c/momo.webp 80w,
+                                https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/a2c11/momo.webp 160w" sizes="80px">
+                                <img width="80" height="80" data-main-image="" sizes="80px" decoding="async" src="https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/185e6/momo.png" srcset="https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/185e6/momo.png 80w,
+                                https://gcp.vn/static/6e406ef3fdb1efa9deb2a378ac7b5e11/8c406/momo.png 160w" alt="" style="object-fit: cover; opacity: 1;">
+                            </picture></li>
+                            
+                          
+                        </ul>
+                    </div>
+                </div>
+
+                
+                
+            </section>
+
+            <!--=============== CONTACTME ===============-->
+            <section class="container section section__height" id="contactme">
+                <div class="contai__section">
+                    <h2 class="section__title wow animate__animated animate__fadeInDown animate__slow" data-wow-duration="2s" data-wow-delay="1s">Thư viện hình ảnh</h2>
+                    <div class="wow animate__animated animate__fadeInUp animate__slow" data-wow-duration="2s" data-wow-delay="2s">
+                        <a class="venobox" data-ratio="16x9" data-vbtype="iframe" href="https://cagboot.com/upload/CT_2.png"><img width= '250'src="https://cagboot.com/upload/CT_2.png" /></a>
+                        <a class="venobox" data-ratio="16x9" data-vbtype="iframe" href="https://cagboot.com/upload/CT_2.png"><img width= '250'src="https://cagboot.com/upload/CT_2.png" /></a>
+                        <a class="venobox" data-ratio="16x9" data-vbtype="iframe" href="https://cagboot.com/upload/CT_2.png"><img width= '250'src="https://cagboot.com/upload/CT_2.png" /></a>
+                        <!-- <a class="my-link" href="https://cagboot.com/upload/CT_2.png"><img src="https://cagboot.com/upload/CT_2.png" alt="image alt"/></a> -->
+                    </div>
+                    
+                
+                    <footer class="sticky-footer">
+                        <!-- <h2>Footer Stick to the Bottom</h2> -->
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Tính Năng</a></li>
+                            <li><a href="#">Bảng Giá</a></li>
+                            <li><a href="#">Đối Tác</a></li>
+                            <li><a href="#">Liên Hệ</a></li>
+                        </ul>
+                        <p> © Copyright KLTeam 2022.</p>
+                    </footer>
+                </div>
+                
+            </section>
+
+
+            
+        </main>
+        
+        
+        
+
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="venobox/dist/venobox.min.js"></script>
+        <script>
+            // icon chay ngang
+            const root = document.documentElement;
+            const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+            const marqueeContent = document.querySelector("ul.marquee-content");
+
+            root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+            for(let i=0; i<marqueeElementsDisplayed; i++) {
+            marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+            }
+
+            // scrollbar
+            let progress = document.getElementById('progressbar');
+            let totalHeight=document.body.scrollHeight - window.innerHeight;
+            window.onscroll=function(){
+                let progressHeight= (window.pageYOffset / totalHeight) *100;
+                progress.style.height=progressHeight + "%";
+            }
+
+            // new VenoBox({
+            //     selector: ".my-link"
+            // });
+            new VenoBox();
+            new WOW().init();
+            // const element = document.querySelector('.contai__section');
+            // element.classList.add('wow','animate__animated', 'animate__fadeInUp');
+
+            // element.addEventListener('animationend', () => {
+            //     element.classList.remove('wow','animate__animated', 'animate__fadeInUp');
+            // });
+
+            // const animateCSS = (element, animation, prefix = 'animate__') =>
+            // // We create a Promise and return it
+            // new Promise((resolve, reject) => {
+            //     const animationName = `${prefix}${animation}`;
+            //     const node = document.querySelector(element);
+
+            //     node.classList.add(`${prefix}animated`, animationName);
+
+            //     // When the animation ends, we clean the classes and resolve the Promise
+            //     function handleAnimationEnd(event) {
+            //     event.stopPropagation();
+            //     node.classList.remove(`${prefix}animated`, animationName);
+            //     resolve('Animation ended');
+            //     }
+
+            //     node.addEventListener('animationend', handleAnimationEnd, {once: true});
+            // });
+        </script>
+    </body>
+</html>
