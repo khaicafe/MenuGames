@@ -138,52 +138,59 @@ async function connection (socket, timeout = 10000) {
   // Facebook login with JavaScript SDK
   function fbLogin() {
       deleteAllCookies();
-      if (login===true) {
-          if (typeof token !== 'undefined' && token!==null){
-                      // Any scope
-                      GetData('/show_user')
-                          .then(data => {
-                              // console.log(data); // JSON data parsed by `data.json()` call
-                              if(data['username'] === 'Could not validate credentials'){
-                                  // Get and display the user profile data
-                                  getFbUserData();
-                              } else{
-                                  console.log('ready FB')
-                                  window.location.href="/Dashboard";
-                              }
-                          });
-                  } else {
-                      // Get and display the user profile data
-                      getFbUserData();
-                  }
-      } else{
-          FB.login(function (response) {
-            //   if (response.authResponse) {
-            //       if (typeof token !== 'undefined' && token!==null){
-            //           // Any scope
-            //           GetData('/show_user')
-            //               .then(data => {
-            //                   // console.log(data); // JSON data parsed by `data.json()` call
-            //                   if(data['username'] === 'Could not validate credentials'){
-            //                       // Get and display the user profile data
-            //                       getFbUserData();
-            //                   } else{
-            //                       console.log('ready FB')
-            //                       // window.location.href="/Dashboard";
-            //                   }
-            //               });
-            //       } else {
-            //           // Get and display the user profile data
-            //           getFbUserData();
-            //       }
+      FB.login(function (response) {
+          getFbUserData();
+  }, {scope: 'email'});
+
+
+
+    //   if (login===true) {
+    //     if (typeof token !== 'undefined' && token!==null){
+    //         // Any scope
+    //         GetData('/show_user')
+    //             .then(data => {
+    //                 // console.log(data); // JSON data parsed by `data.json()` call
+    //                 if(data['username'] === 'Could not validate credentials'){
+    //                     // Get and display the user profile data
+    //                     getFbUserData();
+    //                 } else{
+    //                     console.log('ready FB')
+    //                     window.location.href="/Dashboard";
+    //                 }
+    //             });
+    //     } else {
+    //         // Get and display the user profile data
+    //         getFbUserData();
+    //     }
+    //   } else{
+    //       FB.login(function (response) {
+    //           if (response.authResponse) {
+    //               if (typeof token !== 'undefined' && token!==null){
+    //                   // Any scope
+    //                   GetData('/show_user')
+    //                       .then(data => {
+    //                           // console.log(data); // JSON data parsed by `data.json()` call
+    //                           if(data['username'] === 'Could not validate credentials'){
+    //                               // Get and display the user profile data
+    //                               getFbUserData();
+    //                           } else{
+    //                               console.log('ready FB')
+    //                               // window.location.href="/Dashboard";
+    //                           }
+    //                       });
+    //               } else {
+    //                   // Get and display the user profile data
+    //                   getFbUserData();
+    //               }
   
-            //   } else {
-            //       alert('User cancelled login or did not fully authorize.');
-            //   }
-              getFbUserData();
+    //           } else {
+    //               alert('User cancelled login or did not fully authorize.');
+    //           }
+              
       
-      }, {scope: 'email'});
-  }}
+    //   }, {scope: 'email'});
+    // }
+}
   
   // Fetch the user profile data from facebook
   function getFbUserData(){
