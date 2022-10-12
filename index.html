@@ -141,7 +141,11 @@
             <section class="container section section__height" id="skills">
                 <div class="contai__section">
                     <h2 class="section__title wow animate__animated animate__fadeInDown animate__slow" data-wow-duration="2s" data-wow-delay="1s">Tính năng & Bảng giá</h2>
-                    <div style="color: rgba(255, 255, 255, 0.9); background: rgba(0, 0, 0, 0.61);" class="wow animate__animated animate__fadeInLeft animate__slow" data-wow-duration="2s" data-wow-delay="2s">
+                    
+                    <div class="wow animate__animated animate__fadeInLeft animate__slow" data-wow-duration="2s" data-wow-delay="2s" style="margin: auto;
+                    text-align: center;
+                    width: 80%;color: rgba(255, 255, 255, 0.9); background: rgba(0, 0, 0, 0.61);">
+                        <br>
                         <p>Miễn phí <strong>2 tuần</strong> sử dụng thử phiên bản thu phí KLMenu<strong></strong>.</p>
                         <p>Khuyến mãi thêm 1 tháng sử dụng khi thanh toán trước 12 tháng.</p>
                         <!-- <p>Phần mềm update game <strong>GCUpdater</strong> đang trong giai đoạn thử nghiệm với số phòng máy giới hạn. Chính sách giá sẽ được cập nhật trong thời gian sắp tới.</p> -->
@@ -407,36 +411,36 @@
 
             
         </main>
-        <!-- Messenger Plugin chat Code -->
+        <!--=============== Messenger Plugin chat Code =======================-->
         <div id="fb-root"></div>
 
         <!-- Your Plugin chat code -->
         <div id="fb-customer-chat" class="fb-customerchat">
         </div>
 
-    <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "107825515445919");
-      chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
+        <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "107825515445919");
+        chatbox.setAttribute("attribution", "biz_inbox");
+        </script>
 
-    <!-- Your SDK code -->
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v15.0'
-        });
-      };
+        <!-- Your SDK code -->
+        <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+            xfbml            : true,
+            version          : 'v15.0'
+            });
+        };
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
         
         
 
@@ -444,6 +448,7 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/venobox.min.js"></script>
+        <!-- <script src="assets/js/scriptlandpage.js"></script> -->
         <script>
             // icon chay ngang
             const root = document.documentElement;
@@ -494,6 +499,7 @@
             //     node.addEventListener('animationend', handleAnimationEnd, {once: true});
             // });
         </script>
+
 
 
     </body>
