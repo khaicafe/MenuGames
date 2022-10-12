@@ -54,6 +54,7 @@ async function connection (socket, timeout = 10000) {
   var ipserver = location.host;
   var token = window.localStorage.getItem('tokenmenu-kl');
   var avata = window.localStorage.getItem('avata-user');
+  const photo = document.getElementsByClassName("nav__img");// show photousername
   if (avata !== '' && avata !== null)
     photo[0].src=avata;
   document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
