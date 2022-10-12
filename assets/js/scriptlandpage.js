@@ -242,7 +242,7 @@ async function connection (socket, timeout = 10000) {
               // console.log(photo)
             //   username[0].innerHTML= "<i class='bx bxs-user icon'></i>" + data['username'];//.toUpperCase();
               photo[0].src=avata;
-              show__user.innerHTML =username;
+              show__user.innerHTML =FullName;
             link__down.href='#'
             link__down.onclick = null;
 
