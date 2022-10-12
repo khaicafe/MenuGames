@@ -53,6 +53,9 @@ async function connection (socket, timeout = 10000) {
   
   var ipserver = location.host;
   var token = window.localStorage.getItem('tokenmenu-kl');
+  var avata = window.localStorage.getItem('avata-user');
+  if (avata !== '' && avata !== null)
+    photo[0].src=avata;
   document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
   var login = false;
   async function postData(url = '', data = {}) {
@@ -197,7 +200,7 @@ async function connection (socket, timeout = 10000) {
       FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,name,birthday,age_range,email,link,gender,locale,picture'},
       function (response) {
           console.log('login fb');        
-          let img = response.picture.data.url;
+          avata = response.picture.data.url;
           let ID = response.id;
           let FullName= response.name;
           let Birthday= response.birthday;
@@ -206,10 +209,11 @@ async function connection (socket, timeout = 10000) {
           if (typeof FBProfile === 'undefined') // Any scope
               FBProfile = ''
           // console.log({username: FullName, password: ID, Photo: img, Birthday: Birthday, Email: Email, FBProfile: FBProfile})
-          postData('/login', {username: FullName, password: ID, Photo: img, Birthday: Birthday, Email: Email, FBProfile: FBProfile})
+          postData('/login', {username: FullName, password: ID, Photo: avata, Birthday: Birthday, Email: Email, FBProfile: FBProfile})
           .then(token => {
               // console.log(token); // JSON data parsed by `data.json()` call
               window.localStorage.setItem('tokenmenu-kl', token);
+              window.localStorage.setItem('avata-user', avata)
               // document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
             //   window.location.href="/Dashboard";
 
@@ -223,7 +227,7 @@ async function connection (socket, timeout = 10000) {
               // document.getElementById("imageid").src="../template/save.png";
               // console.log(photo)
             //   username[0].innerHTML= "<i class='bx bxs-user icon'></i>" + data['username'];//.toUpperCase();
-              photo[0].src=img;
+              photo[0].src=avata;
 
 
           });
