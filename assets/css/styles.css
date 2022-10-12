@@ -198,6 +198,22 @@ img {
   font-weight: 600;
 }
 
+/* ============ logo ================= */
+.hinh-kl1{
+  max-width: 50%;
+  /* max-height: 300px; */
+  height: auto;
+  /* box-shadow: 0 5px 5px rgba(255, 255, 255, 0.2); */
+  filter: drop-shadow(0 0 20px #ffffff);
+  padding-bottom: 3.5rem;
+  padding-top: 3rem;
+  /* border: 0; */
+}
+.lead {
+  font-size: var(--normal-font-size);
+  color: white;
+}
+
 /* kich thuoc su dung mobile */
 @media screen and (max-width: 767px) {
   .nav__menu {
@@ -216,6 +232,11 @@ img {
   }
   .sticky-footer{
     display: none;
+  }
+  .hinh-kl1{
+    
+    padding-top: 6rem;
+    
   }
 }
 
@@ -276,6 +297,7 @@ img {
     display: none;
   }
   
+  
 }
 
 /* For medium devices */
@@ -296,6 +318,9 @@ img {
     /* width: 100%; */
    
   }
+  
+
+
   .contai__section{
     padding: 7rem 0 0rem;
   }
@@ -344,20 +369,7 @@ img {
 }
 
 
-.hinh-kl1{
-  max-width: 50%;
-  /* max-height: 300px; */
-  height: auto;
-  /* box-shadow: 0 5px 5px rgba(255, 255, 255, 0.2); */
-  filter: drop-shadow(0 0 20px #ffffff);
-  padding-bottom: 3.5rem;
-  padding-top: 3rem;
-  /* border: 0; */
-}
-.lead {
-  font-size: var(--normal-font-size);
-  color: white;
-}
+
 
 
 
