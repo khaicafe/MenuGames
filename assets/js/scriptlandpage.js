@@ -204,6 +204,20 @@ async function connection (socket, timeout = 10000) {
               window.localStorage.setItem('tokenmenu-kl', token);
               // document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
               window.location.href="/Dashboard";
+
+            //   const username = document.getElementsByClassName("branda");// show name user
+              const photo = document.getElementsByClassName("nav__img");// show photousername
+              // document.getElementById("myspan").innerHTML="newtext";
+              // document.getElementById("myspan").textContent="newtext";
+              // console.log(toggleSidebar)
+              
+              // <img alt='' src='/templates/logo.png' style='position: absolute;'></img>
+              // document.getElementById("imageid").src="../template/save.png";
+              // console.log(photo)
+            //   username[0].innerHTML= "<i class='bx bxs-user icon'></i>" + data['username'];//.toUpperCase();
+              photo[0].src=img;
+
+
           });
           // fbLogout();
           // window.location.href="/Dashboard";
