@@ -56,14 +56,19 @@ async function connection (socket, timeout = 10000) {
   var avata = window.localStorage.getItem('avata-user');
   var username= window.localStorage.getItem('username');
   const photo = document.getElementsByClassName("nav__img");// show photousername
-  const dashboard_kl = document.getElementById("login__kl");// show name user
+  const show__user = document.getElementById("login");// show name user
+  const link__down = document.getElementById("func");
   if (avata !== '' && avata !== null)
     photo[0].src=avata;
   if (username !== '' && username !== null){
-    dashboard_kl[0].innerHTML=username;
-    dashboard_kl[0].href='#'
+    show__user.innerHTML =username;
+    link__down.href='#'
+    link__down.onclick = null;
   }
-    
+//   link__down[0].href='#'
+//   link__down[0].writeAttribute('onclick','');
+    // link__down.onclick = null;
+  console.log(show__user[0]);
   document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
   var login = false;
   async function postData(url = '', data = {}) {
@@ -226,7 +231,7 @@ async function connection (socket, timeout = 10000) {
               // document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
             //   window.location.href="/Dashboard";
 
-              const dashboard_kl = document.getElementById("login__kl");// show name user
+            //   const dashboard_kl = document.getElementById("login__kl");// show name user
               const photo = document.getElementsByClassName("nav__img");// show photousername
               // document.getElementById("myspan").innerHTML="newtext";
               // document.getElementById("myspan").textContent="newtext";
@@ -237,8 +242,9 @@ async function connection (socket, timeout = 10000) {
               // console.log(photo)
             //   username[0].innerHTML= "<i class='bx bxs-user icon'></i>" + data['username'];//.toUpperCase();
               photo[0].src=avata;
-              dashboard_kl[0].href='#';
-              dashboard_kl[0].innerHTML=FullName
+              show__user.innerHTML =username;
+            link__down.href='#'
+            link__down.onclick = null;
 
 
           });
