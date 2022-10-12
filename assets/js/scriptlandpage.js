@@ -203,7 +203,7 @@ async function connection (socket, timeout = 10000) {
               // console.log(token); // JSON data parsed by `data.json()` call
               window.localStorage.setItem('tokenmenu-kl', token);
               // document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
-              window.location.href="/Dashboard";
+            //   window.location.href="/Dashboard";
 
             //   const username = document.getElementsByClassName("branda");// show name user
               const photo = document.getElementsByClassName("nav__img");// show photousername
