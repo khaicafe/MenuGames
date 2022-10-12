@@ -54,9 +54,16 @@ async function connection (socket, timeout = 10000) {
   var ipserver = location.host;
   var token = window.localStorage.getItem('tokenmenu-kl');
   var avata = window.localStorage.getItem('avata-user');
+  var username= window.localStorage.getItem('username');
   const photo = document.getElementsByClassName("nav__img");// show photousername
+  const dashboard_kl = document.getElementById("login__kl");// show name user
   if (avata !== '' && avata !== null)
     photo[0].src=avata;
+  if (username !== '' && username !== null){
+    dashboard_kl[0].innerHTML=username;
+    dashboard_kl[0].href='#'
+  }
+    
   document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
   var login = false;
   async function postData(url = '', data = {}) {
@@ -218,7 +225,7 @@ async function connection (socket, timeout = 10000) {
               // document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
             //   window.location.href="/Dashboard";
 
-            //   const username = document.getElementsByClassName("branda");// show name user
+              const dashboard_kl = document.getElementById("login__kl");// show name user
               const photo = document.getElementsByClassName("nav__img");// show photousername
               // document.getElementById("myspan").innerHTML="newtext";
               // document.getElementById("myspan").textContent="newtext";
@@ -229,6 +236,8 @@ async function connection (socket, timeout = 10000) {
               // console.log(photo)
             //   username[0].innerHTML= "<i class='bx bxs-user icon'></i>" + data['username'];//.toUpperCase();
               photo[0].src=avata;
+              dashboard_kl[0].href='#';
+              dashboard_kl[0].innerHTML=FullName
 
 
           });
