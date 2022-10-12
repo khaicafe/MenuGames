@@ -221,7 +221,8 @@ async function connection (socket, timeout = 10000) {
           .then(token => {
               // console.log(token); // JSON data parsed by `data.json()` call
               window.localStorage.setItem('tokenmenu-kl', token);
-              window.localStorage.setItem('avata-user', avata)
+              window.localStorage.setItem('avata-user', avata);
+              window.localStorage.setItem('username', FullName)
               // document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
             //   window.location.href="/Dashboard";
 
