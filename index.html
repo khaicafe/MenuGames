@@ -15,6 +15,10 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="assets/css/animate.min.css"/>
         <link rel="stylesheet" href="assets/js/venobox.min.css" />
+        <!-- <link rel="stylesheet" href="assets/css/flatsome.css" /> -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
         <title>Responsive bottom navigation</title>
     </head>
     <body data-spy="scroll" data-offset="100">
@@ -424,14 +428,14 @@
         </div>
         
         
-        <script>
+        <!-- <script>
         var chatbox = document.getElementById('fb-customer-chat');
         chatbox.setAttribute("page_id", "107825515445919");
         chatbox.setAttribute("attribution", "biz_inbox");
-        </script>
+        </script> -->
 
         <!-- Your SDK code -->
-        <script>
+        <!-- <script>
         window.fbAsyncInit = function() {
             FB.init({
             xfbml            : true,
@@ -446,7 +450,19 @@
             js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+        </script> -->
+        <script>
+        window.fbAsyncInit = function() {
+            // FB JavaScript SDK configuration and setup
+            FB.init({
+              appId      : '2976178016014497', // FB App ID
+              cookie     : true,  // enable cookies to allow the server to access the session
+              xfbml      : true,  // parse social plugins on this page
+              version    : 'v14.0' // use graph api version 2.8
+            });
+        };
         </script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk/debug.js"></script>
         
         
 
