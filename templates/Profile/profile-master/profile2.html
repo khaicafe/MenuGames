@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> User Profile </title>
+		<link rel="stylesheet" href="style.css">
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+	</head>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			font-family: 'Poppins',sans-serif;
+		}
+		body{
+			background-image: url('college.jpg');
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			height: 100vh;
+		}
+		.profile-card{
+			width: 516px;
+			margin: auto;
+			margin-top: 12px;
+			margin-bottom: 12px;
+			background: #ffffffd9;
+			border-radius: 10px;
+			opacity: 0.98;
+			font-weight: 800;
+			box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.5);
+			position: relative;
+		}
+		.image-container{
+			position: relative;
+		}
+		.image-container img{
+			width: 29%;
+			border-radius: 50%;
+			margin-top: 15px;
+			margin-left: 190px;
+			height: 152px;
+		}
+		.title{
+			position: absolute;
+			left: 183px;
+			top: 170px;
+			font-size: 17px;
+			font-weight: 700;
+			color: #292525;
+			text-shadow: #FC0 1px 0  10px;
+		}
+		.main-container{
+			padding: 32px 20px 20px 20px;
+		}
+		.info{
+			color: black;
+			margin-right: 16px;
+			padding: 14px;
+		}
+		.skills{
+			background-color: green;
+			border-radius: 16px;
+			opacity: 0.45;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		.bar{
+			padding: 0.05rem 12px;
+			border-radius: 16px;
+			text-align: center;
+			color: white;
+			background-color: blue;
+			opacity: 1;
+		}
+		.btn{
+			padding: 10px;
+			margin-top: 9px;
+			margin-bottom: 8px;
+			background-color: #164a40;
+			color: white;
+			width: 65px;
+			outline: none;
+			border-radius: 7px;
+			cursor: pointer;
+			margin-left: 12px;
+		}
+		.about{
+			border: 2px solid gray;
+			border-radius: 7px;
+			margin-left: 12px;
+			display: none;
+
+		}
+		.about img{
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			margin-left: 12px;
+			margin-top: 4px;
+		}
+		.about p{
+			padding: 12px;
+			margin-top: 0px;
+			margin-left: 13px;
+			font-family: 'Lobster',cursive;
+			font-size: 17px;
+		}
+		.about h3{
+			margin-left: 14px;
+			text-decoration: underline;
+		}
+		.btn:hover{
+			background-color: #39524d;
+		}
+		.follow p{
+			color: black;
+			font-size: 18px;
+
+		}
+		.social-media{
+			margin-top: 12px;
+			margin-left: 12px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+		.fa-facebook{
+			background: #034ce6;
+			color: white;
+			border-radius: 50%;
+			padding: 12px;
+		}
+		.fa-twitter{
+			background: #0878ce;
+			color: white;
+			border-radius: 50%;
+			padding: 12px;
+		}
+
+        .fa-instagram{
+			background: #d0092f;
+			color: white;
+			border-radius: 50%;
+			padding: 12px;
+		}
+         .fa-youtube{
+			background: #d20606;
+			color: white;
+			border-radius: 50%;
+			padding: 12px;
+		}
+		.fab:hover{
+		opacity: 0.7;
+		cursor: pointer;
+	}
+
+
+
+
+	</style>
+	
+<body>
+<div class="profile-card">
+	<div class="image-container">
+		<img src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t1.6435-1/125184944_1162942560774102_2213101265261188592_n.jpg?stp=cp0_dst-jpg_p50x50&_nc_cat=109&ccb=1-7&_nc_sid=2f12b7&_nc_ohc=vJAyNouuh30AX9CryQh&_nc_ht=scontent.fsgn5-8.fna&oh=00_AT9epDm-S5NqLnPM2rMtdzUHGHqgdZVavdrW6YncdbZ6eg&oe=6345022F">
+		<div class="title">
+			<h2> Iqra Jabeen</h2>
+		</div>
+	</div>
+	<div class="main-container">
+		<p><i class="fa fa-university info"></i>Harvard University</p>
+		<p><i class="fa fa-home info"></i>Cambridge,MA</p>
+		<p><i class="fa fa-envelope info"></i>mn@gmail.com</p>
+		<p><i class="fa fa-phone info"></i>+9863665698</p>
+		<hr>
+		<p><b><i class="fa fa-asterisk info"></i>Skills</b></p>
+		<p>Frontend</p>
+		<div class="skills">
+			<div class="bar" style="width: 70%">70%</div>
+		</div>
+		<p>Backend</p>
+		<div class="skills">
+			<div class="bar" style="width: 60%">60%</div>
+		</div>
+		<button class="btn">More</button>
+		<div class="about">
+			<img src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t1.6435-1/125184944_1162942560774102_2213101265261188592_n.jpg?stp=cp0_dst-jpg_p50x50&_nc_cat=109&ccb=1-7&_nc_sid=2f12b7&_nc_ohc=vJAyNouuh30AX9CryQh&_nc_ht=scontent.fsgn5-8.fna&oh=00_AT9epDm-S5NqLnPM2rMtdzUHGHqgdZVavdrW6YncdbZ6eg&oe=6345022F" alt="">
+			<h3>Iqra Jabeen</h3>
+			<p>Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Ipsam nam nemo facilis minus expedita sit laborum qui molestias delectus vero rerum eaque omnis ad magnam quas consequuntur obcaecati reprehenderit esse officia accusantium ipsum maxime, itaque velit voluptates? Laboriosam, corrupti vero nulla cumque. Quisquam praesentium laboriosam unde libero qui excepturi expedita, deleniti dolor hic, eveniet facere est aut vero natus eaque corrupti sit, sequi aspernatur reprehenderit exercitationem temporibus repudiandae soluta aliquid! Harum consequuntur nesciunt veniam culpa ullam nemo ea aliquam laborum minus quaerat ex, repellendus repellat? Distinctio commodi repudiandae molestiae? Animi, aspernatur quia rem id?</p>
+		</div>
+		<div class="follow"><p>Follow Me:</p></div>	
+		<div class="social-media">
+			<i class="fab fa-facebook"></i>
+			<i class="fab fa-twitter"></i>
+			<i class="fab fa-instagram"></i>
+			<i class="fab fa-youtube"></i>
+		</div>
+		
+	</div>
+</div>
+<script>
+	let btn=document.querySelector('.btn');
+	let about=document.querySelector('.about');
+	btn.addEventListener('click',function(){
+		if(this.innerText=="More"){
+			about.style.display="block";
+			this. innerText="Less";
+		}
+		else{
+			about.style.display="none";
+			this. innerText="More";
+		}
+	})
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

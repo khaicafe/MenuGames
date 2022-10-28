@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://unpkg.com/twinklecss@1.1.0/twinkle.min.css"/>
+</head>
+<body>
+<script>
+
+
+function getvals(){
+    return fetch("/login", {
+    method: "POST",
+    headers: {
+    // "Authorization": localStorage.getItem('token'),
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Accept": "application/json",
+    "X-Requested-With": "XMLHttpRequest",
+    },
+    body: JSON.stringify({
+      username: "admin",
+      password: "admin"}),
+    })
+    .then((response) => response.json())
+    .then((responseData) => {
+    var element = document.getElementById('username');
+    while (element.firstChild) {
+    element.removeChild(element.firstChild);
+    }
+    element.appendChild(document.createTextNode(responseData));
+    return responseData;
+    })
+    .catch(error => console.warn(error));
+  }
+ 
+ 
+
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+  let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMxMzQ0NjIsInVzZXJuYW1lIjoiYWRtaW4ifQ.qEt62jzH2KDy70d-rsVDe08RAaWj8MTwIxPUYgGh1h4"
+  const response = await fetch(url, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization":'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjMxMzQ0NjIsInVzZXJuYW1lIjoiYWRtaW4ifQ.qEt62jzH2KDy70d-rsVDe08RAaWj8MTwIxPUYgGh1h4' // Here you can add your token,
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    // body: JSON.stringify(data) // body data type must match "Content-Type" header
+    
+  })
+  .catch((error) => {
+    alert(error)
+    console.log(error)
+});
+  if (response.status === 403) alert("Token hết hạn");
+  if (response.ok) {
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  // return response.json(); // parses JSON response into native JavaScript objects
+  
+}
+
+
+postData('/books')
+  .then(data => {
+    console.log('error');
+    console.log(data); // JSON data parsed by `data.json()` call
+  });
+  
+  
+
+</script>
+  <div class="flex p-4 m-6 justify-center">
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="/login" >
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Username
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="username" type="text">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Password
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" name="password" type="password">
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Sign In
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

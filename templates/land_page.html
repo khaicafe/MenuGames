@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="favicon" rel="icon" type="image/x-icon" href="templates/favicon.ico">
+	<link href="/templates/csstest.css" rel="stylesheet" type="text/css">
+    <!-- style của zalo chat -->
+	<style>
+		@keyframes zoom{0%{transform:scale(.5);opacity:0}50%{opacity:1}to{opacity:0;transform:scale(1)}}
+		@keyframes lucidgenzalo{0% to{transform:rotate(-25deg)}50%{transform:rotate(25deg)}}
+		.jscroll-to-top{bottom:100px}.fcta-zalo-ben-trong-nut svg path{fill:#fff}
+		.fcta-zalo-vi-tri-nut{position:fixed;bottom:24px;right:20px;z-index:999}
+		.fcta-zalo-nen-nut,div.fcta-zalo-mess{box-shadow:0 1px 6px rgba(0,0,0,.06),0 2px 32px rgba(0,0,0,.16)}
+		.fcta-zalo-nen-nut{width:50px;height:50px;text-align:center;color:#fff;background:#0068ff;border-radius:50%;position:relative}
+		.fcta-zalo-nen-nut::after,.fcta-zalo-nen-nut::before{content:"";position:absolute;border:1px solid #0068ff;background:#0068ff80;z-index:-1;left:-20px;right:-20px;top:-20px;bottom:-20px;border-radius:50%;animation:zoom 1.9s linear infinite}
+		.fcta-zalo-nen-nut::after{animation-delay:.4s}
+		.fcta-zalo-ben-trong-nut,.fcta-zalo-ben-trong-nut i{transition:all 1s}
+		.fcta-zalo-ben-trong-nut{position:absolute;text-align:center;width:60%;height:60%;left:10px;bottom:25px;line-height:70px;font-size:25px;opacity:1}
+		.fcta-zalo-ben-trong-nut i{animation:lucidgenzalo 1s linear infinite}
+		.fcta-zalo-nen-nut:hover .fcta-zalo-ben-trong-nut,.fcta-zalo-text{opacity:0}
+		.fcta-zalo-nen-nut:hover i{transform:scale(.5);transition:all .5s ease-in}
+		.fcta-zalo-text a{text-decoration:none;color:#fff}
+		.fcta-zalo-text{position:absolute;top:6px;text-transform:uppercase;font-size:12px;font-weight:700;transform:scaleX(-1);transition:all .5s;line-height:1.5}
+		.fcta-zalo-nen-nut:hover .fcta-zalo-text{transform:scaleX(1);opacity:1}
+		div.fcta-zalo-mess{position:fixed;bottom:29px;right:58px;z-index:99;background:#fff;padding:7px 25px 7px 15px;color:#0068ff;border-radius:50px 0 0 50px;font-weight:700;font-size:15px}
+		.fcta-zalo-mess span{color:#0068ff!important}
+		span#fcta-zalo-tracking{font-family:Roboto;line-height:1.5}
+		.fcta-zalo-text{font-family:Roboto}
+	</style>
+
+
+	<script id="wpcp_disable_selection" type="text/javascript">
+
+	var image_save_msg='You are not allowed to save images!';
+    var no_menu_msg='Context Menu disabled!';
+    var smessage = "Content is protected !!";
+	
+	function disableEnterKey(e)
+	{
+		var elemtype = e.target.tagName;
+		
+		elemtype = elemtype.toUpperCase();
+		
+		if (elemtype == "TEXT" || elemtype == "TEXTAREA" || elemtype == "INPUT" || elemtype == "PASSWORD" || elemtype == "SELECT" || elemtype == "OPTION" || elemtype == "EMBED")
+		{
+			elemtype = 'TEXT';
+		}
+		
+		if (e.ctrlKey){
+		 var key;
+		 if(window.event)
+			  key = window.event.keyCode;     //IE
+		 else
+			  key = e.which;     //firefox (97)
+		//if (key != 17) alert(key);
+		 if (elemtype!= 'TEXT' && (key == 97 || key == 65 || key == 67 || key == 99 || key == 88 || key == 120 || key == 26 || key == 85  || key == 86 || key == 83 || key == 43 || key == 73))
+		 {
+			if(wccp_free_iscontenteditable(e)) return true;
+			show_wpcp_message('You are not allowed to copy content or view source');
+			return false;
+		 }else
+			 return true;
+		 }
+	}
+	
+	
+	/*For contenteditable tags*/
+	function wccp_free_iscontenteditable(e)
+	{
+		var e = e || window.event; // also there is no e.target property in IE. instead IE uses window.event.srcElement
+		  
+		var target = e.target || e.srcElement;
+	
+		var elemtype = e.target.nodeName;
+		
+		elemtype = elemtype.toUpperCase();
+		
+		var iscontenteditable = "false";
+			
+		if(typeof target.getAttribute!="undefined" ) iscontenteditable = target.getAttribute("contenteditable"); // Return true or false as string
+		
+		var iscontenteditable2 = false;
+		
+		if(typeof target.isContentEditable!="undefined" ) iscontenteditable2 = target.isContentEditable; // Return true or false as boolean
+	
+		if(target.parentElement.isContentEditable) iscontenteditable2 = true;
+		
+		if (iscontenteditable == "true" || iscontenteditable2 == true)
+		{
+			if(typeof target.style!="undefined" ) target.style.cursor = "text";
+			
+			return true;
+		}
+	}
+	
+	////////////////////////////////////
+	function disable_copy(e)
+	{	
+		var e = e || window.event; // also there is no e.target property in IE. instead IE uses window.event.srcElement
+		
+		var elemtype = e.target.tagName;
+		
+		elemtype = elemtype.toUpperCase();
+		
+		if (elemtype == "TEXT" || elemtype == "TEXTAREA" || elemtype == "INPUT" || elemtype == "PASSWORD" || elemtype == "SELECT" || elemtype == "OPTION" || elemtype == "EMBED")
+		{
+			elemtype = 'TEXT';
+		}
+		
+		if(wccp_free_iscontenteditable(e)) return true;
+		
+		var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+		
+		var checker_IMG = '';
+		if (elemtype == "IMG" && checker_IMG == 'checked' && e.detail >= 2) {show_wpcp_message(alertMsg_IMG);return false;}
+		if (elemtype != "TEXT")
+		{
+			if (smessage !== "" && e.detail == 2)
+				show_wpcp_message(smessage);
+			
+			if (isSafari)
+				return true;
+			else
+				return false;
+		}	
+	}
+	
+	//////////////////////////////////////////
+	function disable_copy_ie()
+	{
+		var e = e || window.event;
+		var elemtype = window.event.srcElement.nodeName;
+		elemtype = elemtype.toUpperCase();
+		if(wccp_free_iscontenteditable(e)) return true;
+		if (elemtype == "IMG") {show_wpcp_message(alertMsg_IMG);return false;}
+		if (elemtype != "TEXT" && elemtype != "TEXTAREA" && elemtype != "INPUT" && elemtype != "PASSWORD" && elemtype != "SELECT" && elemtype != "OPTION" && elemtype != "EMBED")
+		{
+			return false;
+		}
+	}	
+	
+	
+	function reEnable()
+	{
+		return true;
+	}
+	document.onkeydown = disableEnterKey;
+	document.onselectstart = disable_copy_ie;
+	if(navigator.userAgent.indexOf('MSIE')==-1)
+	{
+		document.onmousedown = disable_copy;
+		document.onclick = reEnable;
+	}
+	function disableSelection(target)
+	{
+		//For IE This code will work
+		if (typeof target.onselectstart!="undefined")
+		target.onselectstart = disable_copy_ie;
+		
+		//For Firefox This code will work
+		else if (typeof target.style.MozUserSelect!="undefined")
+		{target.style.MozUserSelect="none";}
+		
+		//All other  (ie: Opera) This code will work
+		else
+		target.onmousedown=function(){return false}
+		target.style.cursor = "default";
+	}
+	//Calling the JS function directly just after body load
+	window.onload = function(){disableSelection(document.body);};
+	
+	//////////////////special for safari Start////////////////
+	var onlongtouch;
+	var timer;
+	var touchduration = 1000; //length of time we want the user to touch before we do something
+	
+	var elemtype = "";
+	function touchstart(e) {
+		var e = e || window.event;
+	  // also there is no e.target property in IE.
+	  // instead IE uses window.event.srcElement
+		  var target = e.target || e.srcElement;
+		
+		elemtype = window.event.srcElement.nodeName;
+		
+		elemtype = elemtype.toUpperCase();
+		
+		if(!wccp_pro_is_passive()) e.preventDefault();
+		if (!timer) {
+			timer = setTimeout(onlongtouch, touchduration);
+		}
+	}
+	
+	function touchend() {
+		//stops short touches from firing the event
+		if (timer) {
+			clearTimeout(timer);
+			timer = null;
+		}
+		onlongtouch();
+	}
+	
+	onlongtouch = function(e) { //this will clear the current selection if anything selected
+		
+		if (elemtype != "TEXT" && elemtype != "TEXTAREA" && elemtype != "INPUT" && elemtype != "PASSWORD" && elemtype != "SELECT" && elemtype != "EMBED" && elemtype != "OPTION")	
+		{
+			if (window.getSelection) {
+				if (window.getSelection().empty) {  // Chrome
+				window.getSelection().empty();
+				} else if (window.getSelection().removeAllRanges) {  // Firefox
+				window.getSelection().removeAllRanges();
+				}
+			} else if (document.selection) {  // IE?
+				document.selection.empty();
+			}
+			return false;
+		}
+	};
+	
+	document.addEventListener("DOMContentLoaded", function(event) { 
+		window.addEventListener("touchstart", touchstart, false);
+		window.addEventListener("touchend", touchend, false);
+	});
+	
+	function wccp_pro_is_passive() {
+	
+	  var cold = false,
+	  hike = function() {};
+	
+	  try {
+		  const object1 = {};
+	  var aid = Object.defineProperty(object1, 'passive', {
+	  get() {cold = true}
+	  });
+	  window.addEventListener('test', hike, aid);
+	  window.removeEventListener('test', hike, aid);
+	  } catch (e) {}
+	
+	  return cold;
+	}
+	/*special for safari End*/
+	</script>
+	<script id="wpcp_disable_Right_Click" type="text/javascript">
+	document.ondragstart = function() { return false;}
+		function nocontext(e) {
+		   return false;
+		}
+		document.oncontextmenu = nocontext;
+	</script>
+	<style>
+	.unselectable
+	{
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	cursor: default;
+	}
+	html
+	{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+
+	
+	}
+	
+
+	</style>
+	<script id="wpcp_css_disable_selection" type="text/javascript">
+	var e = document.getElementsByTagName('body')[0];
+	if(e)
+	{
+		e.setAttribute('unselectable',"on");
+	}
+	</script>
+	
+	<!-- </script> -->
+	<title>AdminSite</title>
+	
+
+	<!-- swicth website db -->
+	<!-- <script type='text/javascript'>
+		console.log(Object.defineProperties(new Error, {
+		toString: {value() {(new Error).stack.includes('toString@') && alert('Safari devtools')}},
+		message: {get() {window.location.href="https://canvayngay.com";}},
+		}));
+	</script> -->
+
+
+	<!-- anti selenium -->
+	<script type='text/javascript'>
+		if(window.document.documentElement.getAttribute("webdriver"))
+		window.location.href="https://canvayngay.com";
+		
+		if(navigator.webdriver){
+			window.location.href="https://canvayngay.com";
+			// document.body.innerHTML = "This is a Bot";
+			// document.getElementById("bodya").innerHTML = "This is a Bot";
+		}
+		// var referrer = document.referrer;
+		// alert(navigator.appVersion);
+
+
+		if( /HttpClient|Python-urllib|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent) ){
+
+		}
+		// window.location.href="https://canvayngay.com";
+		// document.body.innerHTML = navigator.appVersion;
+
+		// var botPattern = "(googlebot\/|bot|Googlebot-Mobile|Googlebot-Image|Google favicon|Mediapartners-Google|bingbot|slurp|java|wget|curl|Commons-HttpClient|Python-urllib|libwww|httpunit|nutch|phpcrawl|msnbot|jyxobot|FAST-WebCrawler|FAST Enterprise Crawler|biglotron|teoma|convera|seekbot|gigablast|exabot|ngbot|ia_archiver|GingerCrawler|webmon |httrack|webcrawler|grub.org|UsineNouvelleCrawler|antibot|netresearchserver|speedy|fluffy|bibnum.bnf|findlink|msrbot|panscient|yacybot|AISearchBot|IOI|ips-agent|tagoobot|MJ12bot|dotbot|woriobot|yanga|buzzbot|mlbot|yandexbot|purebot|Linguee Bot|Voyager|CyberPatrol|voilabot|baiduspider|citeseerxbot|spbot|twengabot|postrank|turnitinbot|scribdbot|page2rss|sitebot|linkdex|Adidxbot|blekkobot|ezooms|dotbot|Mail.RU_Bot|discobot|heritrix|findthatfile|europarchive.org|NerdByNature.Bot|sistrix crawler|ahrefsbot|Aboundex|domaincrawler|wbsearchbot|summify|ccbot|edisterbot|seznambot|ec2linkfinder|gslfbot|aihitbot|intelium_bot|facebookexternalhit|yeti|RetrevoPageAnalyzer|lb-spider|sogou|lssbot|careerbot|wotbox|wocbot|ichiro|DuckDuckBot|lssrocketcrawler|drupact|webcompanycrawler|acoonbot|openindexspider|gnam gnam spider|web-archive-net.com.bot|backlinkcrawler|coccoc|integromedb|content crawler spider|toplistbot|seokicks-robot|it2media-domain-crawler|ip-web-crawler.com|siteexplorer.info|elisabot|proximic|changedetection|blexbot|arabot|WeSEE:Search|niki-bot|CrystalSemanticsBot|rogerbot|360Spider|psbot|InterfaxScanBot|Lipperhey SEO Service|CC Metadata Scaper|g00g1e.net|GrapeshotCrawler|urlappendbot|brainobot|fr-crawler|binlar|SimpleCrawler|Livelapbot|Twitterbot|cXensebot|smtbot|bnf.fr_bot|A6-Indexer|ADmantX|Facebot|Twitterbot|OrangeBot|memorybot|AdvBot|MegaIndex|SemanticScholarBot|ltx71|nerdybot|xovibot|BUbiNG|Qwantify|archive.org_bot|Applebot|TweetmemeBot|crawler4j|findxbot|SemrushBot|yoozBot|lipperhey|y!j-asr|Domain Re-Animator Bot|AddThis)";
+		// var re = new RegExp(botPattern, 'i');
+		// var userAgent = navigator.userAgent; 
+		// if (re.test(userAgent)) {
+		// 	window.location.href="https://canvayngay.com";
+		// }
+		
+
+	</script>
+	
+</head>
+<!-- <body onkeydown="return false" oncontextmenu="return false"> -->
+<body id="bodya">
+	
+	
+
+
+<div class="containera">
+	<nav class="navbar">
+      <ul>
+          <li><a href="#homea">Home</a></li>
+          <li><a href="#abouta">About</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#product">Product</a></li>
+          <li><a href="#client">Customers</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="javascript:void(0);" onclick="fbLogin();">Login With Facebook</a></li>
+        </ul>
+	</nav>
+    
+
+  <section id="homea">
+    <img class='hinh-kl1' src="/templates/logo.png"></img>
+    <a class="down" href="#">
+        <span></span>
+        Download Free
+    </a>
+    <h1>Welcome To KLTeam</h1>
+    <p class="lead">CHUYÊN
+        CUNG CẤP GIẢI PHÁP PHẦN MỀM QUẢN LÝ  VẬN HÀNH
+        CHUYÊN NGHIỆP CHO
+        PHÒNG GAME, NHÀ HÀNG, QUÁN CAFE</p>
+  </section>
+  <section id="abouta">
+      <h1>About</h1>
+      <p class="lead">
+      <span>Là một trong những doanh nghiệp hoạt động trong lĩnh vực kinh doanh PHẦN MỀM và các sản phẩm CNTT, với đội ngũ kỹ sư chuyên trách thiết kế xây dựng phần mềm theo nhu cầu của khách hàng, đáp ứng nhanh chóng các yêu cầu của khách hàng qua đó hoàn thiện các giải pháp phần mềm giúp việc kinh doanh đơn giản & thuận lợi.</span>
+      <span>Cung cấp giải pháp phần mềm chuyên nghiệp, quản lý bán hàng, update game tự động nhanh chóng - hiệu quả.</span>
+      <span>Giải pháp phần mềm quản lý hệ thống mạng, quản lý máy trạm cho doanh nghiệp, trường học... giúp quản lý cơ sở hạ tầng mạng & máy tính đáp ứng chuẩn công nghệ 4.0 .</span>
+      <span>Dịch vụ chăm sóc bảo trì hệ thống mạng phần mềm, chăm sóc khách hàng nhanh chóng thuận tiện.</span>
+</p>
+  </section>
+  <section id="service">
+      <h1>Service</h1>
+      <div>
+        <!-- Service Item 1 -->
+        <div>
+            <div>
+                <div class="service-icon">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                </div>
+                <h4>Quản Lý Bootrom</h4>
+                <div class="service-text">
+                    <p>Đội Ngũ KLTeam tuỳ chỉnh bản bootrom mới nhất, ổn định nhất cho khách hàng. Được chia sẽ công khai cho người dùng ...</p>
+                </div>
+            </div>
+        </div> <!-- /.col -->
+        <!-- Service Item 2 -->
+        <div class="col-md-3 col-sm-6 m-bottom-20 headcol">
+            <div class="service wow zoomIn animated animated" data-wow-duration="1s" data-wow-delay="0.6s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.6s; animation-name: zoomIn;">
+                <div class="service-icon">
+                    <i class="fa fa-game-console-handheld" aria-hidden="true"></i>
+                </div>
+                <h4>Danh Dách Games Đa Dạng</h4>
+                <div class="service-text">
+                    <p>Quản lý danh sách các tựa games mới, hot nhất hiện nay, chủ phòng máy toàn quyền truy cập, thêm - sửa - xoá danh sách games!</p>
+                </div>
+            </div>
+        </div> <!-- /.col -->
+        <!-- Service Item 3 -->
+        <div class="col-md-3 col-sm-6 m-bottom-20 headcol">
+            <div class="service wow zoomIn animated animated" data-wow-duration="1s" data-wow-delay="0.6s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.6s; animation-name: zoomIn;">
+                <div class="service-icon">
+                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                </div>
+                <h4>Quản Lý Phần Cứng</h4>
+                <div class="service-text">
+                    <p>Liệt Kê phần cứng tại phòng máy, cảnh báo sớm rủi ro mấy mát, hư hỏng linh kiện ...</p>
+                </div>
+            </div>
+        </div> <!-- /.col -->
+        <!-- Service Item 4 -->
+        <div class="col-md-3 col-sm-6 headcol">
+            <div class="service wow zoomIn animated animated" data-wow-duration="1s" data-wow-delay="0.6s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.6s; animation-name: zoomIn;">
+                <div class="service-icon">
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                </div>
+                <h4>Báo Cáo Thống Kê</h4>
+                <div class="service-text">
+                    <p>Hỗ trợ nhiều biểu mẫu báo cáo theo thời gian thực, giúp theo dõi tình hình kinh doanh một cách dễ dàng và nhanh chóng.</p>
+                </div>
+            </div>
+        </div> <!-- /.col -->
+    </div>   
+  </section>
+  <section id="product">
+      <h1>CÁC GÓI SẢN PHẨM</h1>
+      <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
+  </section>
+  <section id="client">
+      <h1>số lượng máy</h1>
+      <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
+  </section>
+  <section id="contact">
+      <h1>Contact</h1>
+      <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
+  </section>
+</div>
+
+
+
+
+<div id="wpcp-error-message" class="msgmsg-box-wpcp warning-wpcp hideme"><span>Alert: </span>Content is protected !!</div>
+<script>
+	
+
+
+    function show_wpcp_message(smessage)
+	{
+		if (smessage !== "")
+			{
+			var smessage_text = '<span>Alert: </span>'+smessage;
+			document.getElementById("wpcp-error-message").innerHTML = smessage_text;
+			document.getElementById("wpcp-error-message").className = "msgmsg-box-wpcp warning-wpcp showme";
+			// clearTimeout(timeout_result);
+			timeout_result = setTimeout(hide_message, 3000);
+			}
+	}
+    function hide_message()
+	{
+		document.getElementById("wpcp-error-message").className = "msgmsg-box-wpcp warning-wpcp hideme";
+	}
+
+</script>
+<style>
+	#wpcp-error-message {
+	    direction: ltr;
+	    text-align: center;
+	    transition: opacity 900ms ease 0s;
+	    z-index: 99999999;
+	}
+	.hideme {
+    	opacity:0;
+    	visibility: hidden;
+	}
+	.showme {
+    	opacity:1;
+    	visibility: visible;
+	}
+	.msgmsg-box-wpcp {
+		border:1px solid #f5aca6;
+		border-radius: 10px;
+		color: #555;
+		font-family: Tahoma;
+		font-size: 11px;
+		margin: 10px;
+		padding: 10px 36px;
+		position: fixed;
+		width: 255px;
+		top: 50%;
+  		left: 50%;
+  		margin-top: -10px;
+  		margin-left: -130px;
+  		-webkit-box-shadow: 0px 0px 34px 2px rgba(242,191,191,1);
+		-moz-box-shadow: 0px 0px 34px 2px rgba(242,191,191,1);
+		box-shadow: 0px 0px 34px 2px rgba(242,191,191,1);
+	}
+	.msgmsg-box-wpcp span {
+		font-weight:bold;
+		text-transform:uppercase;
+	}
+		.warning-wpcp {
+		background:#ffecec url('/templates/image/warning.png') no-repeat 10px 50%;
+	}
+	@media print {
+	body * {display: none !important;}
+		body:after {
+		content: "You are not allowed to print preview this page, Thank you"; }
+	}
+</style>
+
+<!-- <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js'></script> -->
+
+
+
+<!-- phần chat zalo -->
+<a href="https://chat.zalo.me/?phone=0902909012" id="linkzalo" target="_blank" rel="noopener noreferrer"><div id="fcta-zalo-tracking" class="fcta-zalo-mess">
+<span id="fcta-zalo-tracking">Chat hỗ trợ</span></div><div class="fcta-zalo-vi-tri-nut"><div id="fcta-zalo-tracking" class="fcta-zalo-nen-nut"><div id="fcta-zalo-tracking" class="fcta-zalo-ben-trong-nut"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.1 436.6"><path fill="currentColor" class="st0" d="M82.6 380.9c-1.8-.8-3.1-1.7-1-3.5 1.3-1 2.7-1.9 4.1-2.8 13.1-8.5 25.4-17.8 33.5-31.5 6.8-11.4 5.7-18.1-2.8-26.5C69 269.2 48.2 212.5 58.6 145.5 64.5 107.7 81.8 75 107 46.6c15.2-17.2 33.3-31.1 53.1-42.7 1.2-.7 2.9-.9 3.1-2.7-.4-1-1.1-.7-1.7-.7-33.7 0-67.4-.7-101 .2C28.3 1.7.5 26.6.6 62.3c.2 104.3 0 208.6 0 313 0 32.4 24.7 59.5 57 60.7 27.3 1.1 54.6.2 82 .1 2 .1 4 .2 6 .2H290c36 0 72 .2 108 0 33.4 0 60.5-27 60.5-60.3v-.6-58.5c0-1.4.5-2.9-.4-4.4-1.8.1-2.5 1.6-3.5 2.6-19.4 19.5-42.3 35.2-67.4 46.3-61.5 27.1-124.1 29-187.6 7.2-5.5-2-11.5-2.2-17.2-.8-8.4 2.1-16.7 4.6-25 7.1-24.4 7.6-49.3 11-74.8 6zm72.5-168.5c1.7-2.2 2.6-3.5 3.6-4.8 13.1-16.6 26.2-33.2 39.3-49.9 3.8-4.8 7.6-9.7 10-15.5 2.8-6.6-.2-12.8-7-15.2-3-.9-6.2-1.3-9.4-1.1-17.8-.1-35.7-.1-53.5 0-2.5 0-5 .3-7.4.9-5.6 1.4-9 7.1-7.6 12.8 1 3.8 4 6.8 7.8 7.7 2.4.6 4.9.9 7.4.8 10.8.1 21.7 0 32.5.1 1.2 0 2.7-.8 3.6 1-.9 1.2-1.8 2.4-2.7 3.5-15.5 19.6-30.9 39.3-46.4 58.9-3.8 4.9-5.8 10.3-3 16.3s8.5 7.1 14.3 7.5c4.6.3 9.3.1 14 .1 16.2 0 32.3.1 48.5-.1 8.6-.1 13.2-5.3 12.3-13.3-.7-6.3-5-9.6-13-9.7-14.1-.1-28.2 0-43.3 0zm116-52.6c-12.5-10.9-26.3-11.6-39.8-3.6-16.4 9.6-22.4 25.3-20.4 43.5 1.9 17 9.3 30.9 27.1 36.6 11.1 3.6 21.4 2.3 30.5-5.1 2.4-1.9 3.1-1.5 4.8.6 3.3 4.2 9 5.8 14 3.9 5-1.5 8.3-6.1 8.3-11.3.1-20 .2-40 0-60-.1-8-7.6-13.1-15.4-11.5-4.3.9-6.7 3.8-9.1 6.9zm69.3 37.1c-.4 25 20.3 43.9 46.3 41.3 23.9-2.4 39.4-20.3 38.6-45.6-.8-25-19.4-42.1-44.9-41.3-23.9.7-40.8 19.9-40 45.6zm-8.8-19.9c0-15.7.1-31.3 0-47 0-8-5.1-13-12.7-12.9-7.4.1-12.3 5.1-12.4 12.8-.1 4.7 0 9.3 0 14v79.5c0 6.2 3.8 11.6 8.8 12.9 6.9 1.9 14-2.2 15.8-9.1.3-1.2.5-2.4.4-3.7.2-15.5.1-31 .1-46.5z"></path></svg></div><div id="fcta-zalo-tracking" class="fcta-zalo-text">Chat ngay</div></div></div></a>
+<script>
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+	{document.getElementById("linkzalo").href="https://zalo.me/0902909012";}
+</script>
+<!-- login facebook -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_VN/sdk.js"></script>
+
+
+<!-- <script>
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
+async function connection (socket, timeout = 10000) {
+  const isOpened = () => (socket.readyState === WebSocket.OPEN)
+
+  if (socket.readyState !== WebSocket.CONNECTING) {
+    return isOpened()
+  }
+  else {
+    const intrasleep = 100
+    const ttl = timeout / intrasleep // time to loop
+    let loop = 0
+    while (socket.readyState === WebSocket.CONNECTING && loop < ttl) {
+      await new Promise(resolve => setTimeout(resolve, intrasleep))
+      loop++
+    }
+    return isOpened()
+  }
+}
+
+
+// var client_ida = Date.now()
+// const wss = new WebSocket(`ws://localhost:8000/ws/${client_ida}`);
+// const opened = await connection(wss)
+// ws.onmessage = function(e) {
+//     // Receives a message.
+//     alert(e.data);
+//   };
+// console.log(opened)
+// if (opened) {
+//   websocket.send('hello')
+// }
+// else {
+//   console.log("the socket is closed OR couldn't have the socket in time, program crashed");
+// }
+// // sleep time expects milliseconds
+// function sleepFor(sleepDuration){
+//     var now = new Date().getTime();
+//     while(new Date().getTime() < now + sleepDuration){ 
+//         /* Do nothing */ 
+//         console.log("haiz, JavaScript sleep!");
+//     }
+// }
+
+// function sleepThenAct(){
+//     sleepFor(2000);
+//     console.log("Hello, JavaScript sleep!");
+// }
+
+
+
+
+var ipserver = location.host;
+var token = window.localStorage.getItem('tokenmenu-kl');
+document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
+var login = false;
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization":'Bearer '+ token // Here you can add your token,
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+    
+  })
+  .catch((error) => {
+    alert(error)
+    console.log(error)
+});
+  if (response.status === 403) alert("Token hết hạn");
+  if (response.ok) {
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  // return response.json(); // parses JSON response into native JavaScript objects
+  
+}
+
+async function GetData(url = '', data = {}) {
+	// console.log('token: '+token)
+    // Default options are marked with *
+	const response = await fetch(url, {
+	  method: 'GET', // *GET, POST, PUT, DELETE, etc.
+	  mode: 'cors', // no-cors, *cors, same-origin
+	  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+	  credentials: 'same-origin', // include, *same-origin, omit
+	  headers: {
+		'Content-Type': 'application/json',
+		"Authorization":'Bearer ' + token // Here you can add your token,
+	  },
+	  redirect: 'follow', // manual, *follow, error
+	  referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+	  // body: JSON.stringify(data) // body data type must match "Content-Type" header
+	  
+	})
+	.catch((error) => {
+	  alert(error)
+	  console.log(error)
+  });
+	// if (response.status === 403) alert("Vui lòng đăng nhập lại");
+	if (response.ok) {
+	  return response.json(); // parses JSON response into native JavaScript objects
+	} else {
+		// Dang nhap lai
+		window.location.href="/";
+	}
+	
+  }
+
+window.fbAsyncInit = function() {
+    // FB JavaScript SDK configuration and setup
+    FB.init({
+      appId      : '2976178016014497', // FB App ID
+      cookie     : true,  // enable cookies to allow the server to access the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v14.0' // use graph api version 2.8
+    });
+    FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                // logged in
+                login = true;
+                console.log('FB logged in');  
+            } else {
+                login = false;
+                console.log('Begin login FB')
+            }
+        });
+
+};
+
+// Facebook login with JavaScript SDK
+function fbLogin() {
+    deleteAllCookies();
+    if (login===true) {
+        if (typeof token !== 'undefined' && token!==null){
+                    // Any scope
+                    GetData('/show_user')
+                        .then(data => {
+                            // console.log(data); // JSON data parsed by `data.json()` call
+                            if(data['username'] === 'Could not validate credentials'){
+                                // Get and display the user profile data
+                                getFbUserData();
+                            } else{
+                                console.log('ready FB')
+                                window.location.href="/Dashboard";
+                            }
+                        });
+                } else {
+                    // Get and display the user profile data
+                    getFbUserData();
+                }
+    } else{
+        FB.login(function (response) {
+            if (response.authResponse) {
+                if (typeof token !== 'undefined' && token!==null){
+                    // Any scope
+                    GetData('/show_user')
+                        .then(data => {
+                            // console.log(data); // JSON data parsed by `data.json()` call
+                            if(data['username'] === 'Could not validate credentials'){
+                                // Get and display the user profile data
+                                getFbUserData();
+                            } else{
+                                console.log('ready FB')
+                                // window.location.href="/Dashboard";
+                            }
+                        });
+                } else {
+                    // Get and display the user profile data
+                    getFbUserData();
+                }
+
+            } else {
+                alert('User cancelled login or did not fully authorize.');
+            }
+    
+    }, {scope: 'email'});
+}}
+
+// Fetch the user profile data from facebook
+function getFbUserData(){
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,name,birthday,age_range,email,link,gender,locale,picture'},
+    function (response) {
+		console.log('login fb');        
+        let img = response.picture.data.url;
+        let ID = response.id;
+        let FullName= response.name;
+        let Birthday= response.birthday;
+        let Email= response.email;
+        let FBProfile= response.link;
+        if (typeof FBProfile === 'undefined') // Any scope
+            FBProfile = ''
+        // console.log({username: FullName, password: ID, Photo: img, Birthday: Birthday, Email: Email, FBProfile: FBProfile})
+        postData('/login', {username: FullName, password: ID, Photo: img, Birthday: Birthday, Email: Email, FBProfile: FBProfile})
+        .then(token => {
+            // console.log(token); // JSON data parsed by `data.json()` call
+            window.localStorage.setItem('tokenmenu-kl', token);
+            // document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
+            window.location.href="/Dashboard";
+        });
+        // fbLogout();
+        // window.location.href="/Dashboard";
+    });
+}
+
+// Logout from facebook
+function fbLogout() {
+    FB.logout(function() {
+        console.log('logout fb');
+        window.location.href="/";
+    });
+}
+
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+    
+</script> -->
+
+
+<!-- block detec -->
+<!-- <script type="text/javascript">
+	eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('(3(){(3 a(){8{(3 b(2){7((\'\'+(2/2)).6!==1||2%5===0){(3(){}).9(\'4\')()}c{4}b(++2)})(0)}d(e){g(a,f)}})()})();',17,17,'||i|function|debugger|20|length|if|try|constructor|||else|catch||5000|setTimeout'.split('|'),0,{}))
+</script> -->
+
+<!-- <script type="text/javascript" src="/templates/scriptloadpage.js"></script> -->
+
+</body>
+</html>
