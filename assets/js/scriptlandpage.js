@@ -48,7 +48,58 @@ async function connection (socket, timeout = 10000) {
   //     console.log("Hello, JavaScript sleep!");
   // }
   
-  
+  function submitform(ID,HoTen,Photo,Birthday,Email,Social) {
+    var Photo = `=IMAGE("${Photo}",1)`
+    var Date_Create = new Date().toLocaleString();
+    var search_params = new URLSearchParams(); 
+    // append parameters
+    search_params.append('app', 'Dangky');
+    search_params.append('Date-Create', Date_Create);
+    search_params.append('ID', ID);
+    search_params.append('HoTen', HoTen);
+    search_params.append('Photo', Photo);
+    search_params.append('Birthday', Birthday);
+    search_params.append('Email', Email);
+    search_params.append('Social', Social);
+    // query string
+    var query_string = search_params.toString();
+
+    const url = 'https://script.google.com/macros/s/AKfycbyvhJU56RfOvbePo45F6aQQrF-ECdTkUY-K-ewmeBYPq9_6o6i8tLTDpv0IzipMCvptwQ/exec'
+    // const url = 'https://script.google.com/macros/s/AKfycbwnXFCrXKDE4WZLa0-NVl7-n1BR1m9cr9xhCq_Ypb9ghkF1gaddiZcJXfeEZyL_2mA/exec'
+    var jqxhr = $.ajax({
+                url: url,
+                method: "POST",
+                dataType: "json",
+                data: query_string,
+                success : function(data) {
+                    console.log('submit',data);
+
+                    // if (data.result=='Cham sim'){
+                    //     chamsim();
+                    // }else{
+                    //     var valuekey= data.value[0]
+                    //     for (var i = 5; i < valuekey.length-1; i++) {
+                    //         if (valuekey[i]!=''&& valuekey[i]!=null){
+                    //             console.log('App',i, valuekey[i]);
+                    //             App_open ='open';
+                    //             window.localStorage.setItem('App', 'open')
+                    //         }
+                    //     }
+                    //     simdacham(data.value[0]);
+                        
+                    // }
+                }
+            })
+
+            
+            // const qs = new URLSearchParams({app: 'Dangky', ID: ID, HoTen: HoTen, Birthday: Birthday});
+            // fetch(`${url}?${qs}`, {method: "POST", body: JSON.stringify()})
+            // .then(res => res.json())
+            // .then(e => {
+            //     console.log('kka: ',e);
+  // })
+}
+
   
   
   var ipserver = location.host;
@@ -71,6 +122,8 @@ async function connection (socket, timeout = 10000) {
   console.log(show__user[0]);
   document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
   var login = false;
+
+
   async function postData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -138,25 +191,30 @@ async function connection (socket, timeout = 10000) {
         xfbml      : true,  // parse social plugins on this page
         version    : 'v14.0' // use graph api version 2.8
       });
+      
       FB.getLoginStatus(function(response) {
               if (response.status === 'connected') {
                   // logged in
                   login = true;
                   console.log('FB logged in');  
+                  
               } else {
                   login = false;
                   console.log('Begin login FB')
+                  
               }
+              
           });
+      
   
   };
   
-  // Facebook login with JavaScript SDK
+  ////////////////// Facebook login with JavaScript SDK //////////////////////
   function fbLogin() {
-      deleteAllCookies();
+      // deleteAllCookies();
       FB.login(function (response) {
           getFbUserData();
-  }, {scope: 'email'});
+  }, {scope: 'public_profile,email'});
 
 
 
@@ -214,6 +272,7 @@ async function connection (socket, timeout = 10000) {
       function (response) {
           console.log('login fb');        
           avata = response.picture.data.url;
+          let Social = "Facebook"   
           let ID = response.id;
           let FullName= response.name;
           let Birthday= response.birthday;
@@ -221,35 +280,17 @@ async function connection (socket, timeout = 10000) {
           let FBProfile= response.link;
           if (typeof FBProfile === 'undefined') // Any scope
               FBProfile = ''
-          // console.log({username: FullName, password: ID, Photo: img, Birthday: Birthday, Email: Email, FBProfile: FBProfile})
-          postData('/login', {username: FullName, password: ID, Photo: avata, Birthday: Birthday, Email: Email, FBProfile: FBProfile})
-          .then(token => {
-              // console.log(token); // JSON data parsed by `data.json()` call
-              window.localStorage.setItem('tokenmenu-kl', token);
-              window.localStorage.setItem('avata-user', avata);
-              window.localStorage.setItem('username', FullName)
-              // document.cookie = 'cookie='+ token +' ;expires=Fri, 31 Dec 9999 12:00:00 UTC; path=/';
-            //   window.location.href="/Dashboard";
 
-            //   const dashboard_kl = document.getElementById("login__kl");// show name user
-              const photo = document.getElementsByClassName("nav__img");// show photousername
-              // document.getElementById("myspan").innerHTML="newtext";
-              // document.getElementById("myspan").textContent="newtext";
-              // console.log(toggleSidebar)
-              
-              // <img alt='' src='/templates/logo.png' style='position: absolute;'></img>
-              // document.getElementById("imageid").src="../template/save.png";
-              // console.log(photo)
-            //   username[0].innerHTML= "<i class='bx bxs-user icon'></i>" + data['username'];//.toUpperCase();
-              photo[0].src=avata;
-              show__user.innerHTML =FullName;
-            link__down.href='#'
-            link__down.onclick = null;
-
-
-          });
-          // fbLogout();
-          // window.location.href="/Dashboard";
+          submitform(ID,FullName,avata,Birthday,Email,Social);
+          // window.localStorage.setItem('tokenmenu-kl', token);
+          // window.localStorage.setItem('avata-user', avata);
+          // window.localStorage.setItem('username', FullName);
+          const photo = document.getElementsByClassName("nav__img");// show photousername
+          photo[0].src=avata;
+          show__user.innerHTML =FullName;
+          link__down.href='#'
+          link__down.onclick = null;
+          
       });
   }
   
@@ -273,3 +314,6 @@ async function connection (socket, timeout = 10000) {
       
 
 // eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('(3(){(3 a(){8{(3 b(2){7((\'\'+(2/2)).6!==1||2%5===0){(3(){}).9(\'4\')()}c{4}b(++2)})(0)}d(e){g(a,f)}})()})();',17,17,'||i|function|debugger|20|length|if|try|constructor|||else|catch||5000|setTimeout'.split('|'),0,{}))
+
+////////////////////// Google Login ///////////////////
+
